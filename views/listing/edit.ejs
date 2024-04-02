@@ -1,0 +1,75 @@
+<% layout('/layout/boilerplate') %>
+
+       <div class="row">
+        <form method="post" action="/listing/<%= data.id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
+
+           <div class="col col-8  offset-2">
+            <div class="mb-3">
+
+                <label for="title" class="form-label">Title</label>
+                <input type="text"  name="listing[title]"  value="<%= data.title %>" placeholder="ABCD.." class="form-control" id="title" required/>
+
+                <div class="invalid-feedback">
+                    Enter title
+                  </div>
+
+            </div>
+
+            <div class="mb-3">
+                
+                <label for="description" class="form-label">description</label>
+                <input type="text"  name="listing[description]"  value="<%= data.description %>" class="form-control" id="description" required/>
+                <div class="invalid-feedback">
+                   please add description
+                  </div>
+            </div>
+
+            <div class="mb-3">
+                
+                <img src="<%= originalurl %>" alt="listingimg" />
+    
+            </div>
+
+            <div class="mb-3">
+                
+                <label for="image" class="form-label">upload image</label>
+                <input type="file" name="listing[image]" value="<%= data.image.url %>" class="form-control" id="image" />
+              
+            </div>
+            <div class="row">
+                <div class="mb-3 col-md-4 mb-3">
+
+                    <label for="location" class="form-label">location</label>
+                <input type="text"  name="listing[location]" value="<%= data.location %>" placeholder="dadat east , mumbai center .." class="form-control" id="location" />
+
+                <div class="invalid-feedback">
+                 Enter  location
+                  </div>
+                </div>
+
+
+                <div class="mb-3 col-md-8 mb-3">
+                    <label for="price" class="form-label">price</label>
+                    <input type="number" value="" name="listing[price]"  value="<%=data.price%>"  class="form-control" id="price" required/>
+                    <div class="invalid-feedback">
+                        Enter right price please
+                    </div>
+                </div>
+            </div>
+         
+           <div class="row">
+            <div class="col-md-4 mb-3"> 
+                <label for="country" class="form-label">country</label>
+                <input type="text"  name="listing[country]" value="<%= data.country %>" placeholder="india  , china ..." class="form-control" id="country" />
+                <div class="invalid-feedback">
+                    choose correct coutry 
+                </div>
+            </div>
+           </div>
+           <br>
+           <button type="submit" class="btn btn-danger  mb-3">Submit</button>
+        </form>
+    </div>
+
+
+       </div>

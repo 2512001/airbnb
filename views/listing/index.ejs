@@ -1,0 +1,180 @@
+<% layout('/layout/boilerplate') %>
+<style>
+.main {
+  display: flex;
+  align-items: center;
+}
+#filter {
+  display: flex;
+  text-align: center;
+  overflow-x: auto; 
+  padding-left: 0.5rem;
+  padding-right: 1rem;
+}
+#filter::-webkit-scrollbar {
+  display: none;
+}
+#filter #icons {
+  margin-left: 1rem;
+  opacity: 0.8;
+  cursor: pointer;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+#filter div p {
+  font-size: 1rem;
+}
+#filter #icons:hover {
+  opacity: 1;
+}
+#switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #CCCCCC;
+  border-radius: 0.6rem;
+  padding: 0.6rem;
+  height: 4rem;
+  font-size: 1rem;
+}
+#switch:hover {
+  background-color: rgba(239, 235, 235, 0.879);
+  border-style: 2px solid;
+}
+.gst {
+  display: none;
+}
+@media screen and (max-width: 576px) {
+    #switch {
+      width: 60%; 
+      margin-left: 2rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+</style>
+</head>
+<body>
+<div class="row main  mb-4">
+<div class="col col-lg-8 col-sm-12 col-md-12">
+  <div id="filter">
+    <div id="icons" data-category="trending">
+      <i class="fas fa-fire"></i>
+      <p name="tranding">trending</p>
+    </div>
+    <div id="icons" data-category="rooms">
+      <i class="fas fa-bed"></i>
+      <p>rooms</p>
+    </div>
+    <div id="icons" data-category="mountain_city">
+      <i class="fas fa-mountain"></i>    
+      <p>Iconic_city</p>
+    </div>
+    
+    <div id="icons"  data-category="pools">
+      <i class="fas fa-swimmer"></i>   
+      <p>pools</p>
+    </div>
+    <div id="icons"  data-category="camping">
+      <i class="fas fa-campground"></i>    
+      <p>camping</p>
+    </div>
+    <div id="icons"  data-category="farms">
+      <i class="fas fa-horse"></i>
+      <p>farms</p>
+    </div>
+    <div id="icons"  data-category="arctics">
+      <i class="fas fa-snowflake"></i>    
+      <p>arctic</p>
+    </div>
+    <div id="icons" data-category="lakefront">
+      <i class="fas fa-house-damage"></i>
+      <p>lakefront</p>
+    </div>
+    <div id="icons"  data-category="skating">
+      <i class="fas fa-skating"></i>
+      <p>skating</p>
+    </div>
+    <div id="icons"  data-category="beaches">
+      <i class="fas fa-umbrella-beach"></i>    
+      <p>beaches</p>
+    </div>
+    <div id="icons"  data-category="farms">
+      <i class="fas fa-horse"></i>
+      <p>farms</p>
+    </div>
+    <div id="icons"  data-category="arctics">
+      <i class="fas fa-snowflake"></i>    
+      <p>arctic</p>
+    </div>
+    <div id="icons" data-category="lakefront">
+      <i class="fas fa-house-damage"></i>
+      <p>lakefront</p>
+    </div>
+    <div id="icons"  data-category="skating">
+      <i class="fas fa-skating"></i>
+      <p>skating</p>
+    </div>
+    <div id="icons"  data-category="beaches">
+      <i class="fas fa-umbrella-beach"></i>    
+      <p>beaches</p>
+    </div>
+  </div>
+</div>
+
+<div id="switch" class="col-md-6 col-lg-3 col-sm-6 mb-sm-2 offset-lg-1  offset-md-3" data-category="lakefront">
+  <div class="form-check form-switch form-check-reverse">
+    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+    <label class="form-check-label" for="flexSwitchCheckDefault">display total after tax</label>
+  </div>
+</div>
+
+</div>
+
+    <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-1">
+      <% for(let listing of data) { %>
+        <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
+          <a href="/listing/<%= listing.id %>" id="list"> <!-- Link with dynamic listing ID -->
+            <div class="card listing">
+              <img src="<%= listing.image.url %>" class="card-img-top" alt="house-image" style="height: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title"><b><%= listing.title %></b></h5>
+                <p class="card-text">₹<%= listing.price %> / per night  &nbsp; &nbsp;<i class="gst">+15% gst</i></p>
+
+              </div>
+            </div>
+          </a>
+        </div>
+      <% } %>
+    </div>
+
+    <script>
+    let togglebtn  =  document.getElementById("flexSwitchCheckDefault");
+    togglebtn.addEventListener('click' , ()=>{
+        let    tax =   document.getElementsByClassName('gst');
+     for(i of tax)
+     {
+      if(i.style.display !== 'inline')
+      i.style.display = 'inline';
+    else {
+      i.style.display = 'none';
+    }
+     }
+    })
+
+    document.addEventListener('DOMContentLoaded', function() {
+    let icons = document.querySelectorAll('#icons');
+    
+    icons.forEach(element => {
+        element.addEventListener('click', () => {
+        let category =   element.getAttribute('data-category');
+        window.location.href = `/listing/filter?_categories=${category}`;
+        });
+    });
+});
+    </script>
+     
+    
+
+

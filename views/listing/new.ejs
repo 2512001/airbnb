@@ -1,0 +1,111 @@
+<% layout('/layout/boilerplate') %>
+<style>
+    .container form .custom-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 8l4 4 4-4H6z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.7em top 50%, 0 0;
+    background-size: 1.5em auto;
+    padding-right: 2.5em;
+    padding-left: 1em;
+}
+
+.container form .custom-select:hover {
+    border: 1px solid #007bff;
+}
+
+.container form .custom-select:focus {
+    outline: none;
+    border: 1px solid #007bff;
+}
+
+</style>  
+<div class="row">
+        <div class="col-8 offset-2">
+            <h3>creating new listing</h3>
+            <form method="post" action="/listing" novalidate class="needs-validation" enctype="multipart/form-data">
+                <div class="mb-3 mt-3">
+                    <label for="title" class="form-label">Enter title</label>
+                    <input type="text" placeholder="ABCZ.." name="listing[title]" class="form-control" id="title"
+                        required>
+                    <div class="valid-feedback">
+                        title looking good
+                    </div>
+                    
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Enter description</label>
+                    <textarea name="listing[description]" placeholder="sweet home ..." class="form-control"
+                        required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">upload image</label>
+                    <input type="file" name="listing[image]" placeholder="image link/url" class="form-control"
+                        id="image" />
+                </div>
+
+                <div class="row">
+                    <div class="mb-3 col-sm-4">
+                        <label for="location" class="form-label">location</label>
+                        <input type="text" name="listing[location]" class="form-control" id="location" required />
+                        <div class="invalid-feedback">
+                            enter location
+                        </div>
+                    </div>
+
+                    <div class="mb-3 col-sm-8">
+                        <label for="price" class="form-label">enter price</label>
+                        <input type="number" name="listing[price]" placeholder="Enter price" class="form-control" id="price"  />
+                        <div class="invalid-feedback">
+                            Enter correct price
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="mb-3 col-md-4 ">
+                        <label for="country" class="form-label">country</label>
+                        <input type="text" name="listing[country]" placeholder="" class="form-control" id="country"
+                            required />
+                        <div class="valid-feedback">
+                            Enter country name
+                        </div>
+                       
+                    </div>
+                    <div class="mb-3 col-md-4 ">
+                        <label for="country" class="form-label">select categories</label>
+
+                        <select id="categories" name="listing[categories]" class="form-select custom-select" aria-label="Default select example" required>
+                            <option value="" selected disabled>Select an option</option>
+                            <option value="mountain_city">Mountain City</option>
+                            <option value="lakefront">Lakefront</option>
+                            <option value="skating">Skating</option>
+                            <option value="beaches">Beaches</option>
+                            <option value="camping">Camping</option>
+                            <option value="castles">Castles</option>
+                            <option value="arctics">Arctics</option>
+                            <option value="farms">Farms</option>
+                            <option value="trending">Trending</option>
+                            <option value="rooms">Rooms</option>
+                            <option value="pools">Pools</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            please select categories where yo'r place specilaty
+                        </div>
+                       
+                </div>
+                </div>
+                <br>
+
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-danger">submit</button>
+                </div>
+                <br>
+
+            </form>
+        </div>
+    </div>
