@@ -50,6 +50,7 @@ next()
 
 //vadlidation of listing and review
 module.exports.validlisting = (req, res, next) => {
+  console.log(req.body);
   const { id } = req.params;
   let result = listingSchema2.validate(req.body);
   if (result.error) {
