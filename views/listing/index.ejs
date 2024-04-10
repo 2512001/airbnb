@@ -134,7 +134,7 @@
 
     <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-1">
       <% for(let listing of data) { %>
-        <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
+        <div class="col-lg-3 col-md-4 col-sm-12 mb-4 item">
           <a href="/listing/<%= listing.id %>" id="list"> <!-- Link with dynamic listing ID -->
             <div class="card listing">
               <img src="<%= listing.image.url %>" class="card-img-top" alt="house-image" style="height: 18rem;">
@@ -150,6 +150,7 @@
     </div>
 
     <script>
+
     let togglebtn  =  document.getElementById("flexSwitchCheckDefault");
     togglebtn.addEventListener('click' , ()=>{
         let    tax =   document.getElementsByClassName('gst');

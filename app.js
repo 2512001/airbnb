@@ -112,3 +112,14 @@ const port = 8000;
 app.listen(port, () => {
     console.log(`App is running on port ${port}`);
 });
+
+// // getting-started.js
+
+// //localdatabase
+// // main().catch(err => console.log(err));
+
+// // async function main() {
+// //   await mongoose.connect('mongodb://127.0.0.1:27017/travelstay');
+// //   console.log('database is connected');
+// //   // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
+// // }
