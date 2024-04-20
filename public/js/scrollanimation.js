@@ -12,7 +12,7 @@ ScrollReveal().reveal('.item', {
       bottom: 0,
       left: 0,
   },
-  reset : true
+  // reset : true
 });
 
 ScrollReveal().reveal('.alert', {
