@@ -10,7 +10,7 @@ const methodOverride = require('method-override');
 const engine = require('ejs-mate');
 const expressError = require('./uitls/expressErr.js');
 var session = require('express-session');
-// const MongoStore = require('connect-mongo');
+const MongoStore = require('connect-mongo');
 var flash = require('connect-flash');
 const passport = require('passport');
 const Localstratigy = require('passport-local');
@@ -23,46 +23,46 @@ const userrouter = require('./router/user.js');
 
 // getting-started.js
 
-// localdatabase
-main().catch(err => console.log(err));
+// // localdatabase
+// main().catch(err => console.log(err));
 
-async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/travelstay');
-  console.log('database is connected');
-  // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
-}
+// async function main() {
+//   await mongoose.connect('mongodb://127.0.0.1:27017/travelstay');
+//   console.log('database is connected');
+//   // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
+// }
 
 //env
 const mongodbUrl = process.env.mongodbAtlasUrl;
 
 
-// async function connectToDatabase() {
-//     try {
-//         await mongoose.connect(mongodbUrl);
-//         console.log('Database connected');
-//     } catch (error) {
-//         console.error('Error connecting to database:', error);
-//     }
-// }
+async function connectToDatabase() {
+    try {
+        await mongoose.connect(mongodbUrl);
+        console.log('Database connected');
+    } catch (error) {
+        console.error('Error connecting to database:', error);
+    }
+}
 
-// connectToDatabase();
+connectToDatabase();
 
 
-// const store = MongoStore.create({
-//     mongoUrl: mongodbUrl,
-//     crypto: {
-//         secret: process.env.SECRET,
-//     },
-//     touchAfter: 1 * 60 * 60
+const store = MongoStore.create({
+    mongoUrl: mongodbUrl,
+    crypto: {
+        secret: process.env.SECRET,
+    },
+    touchAfter: 1 * 60 * 60
 
-// });
+});
 
-// store.on('error', () => {
-//     console.log('mondb session error', err);
-// });
+store.on('error', () => {
+    console.log('mondb session error', err);
+});
 
 const sessions = {
-    // store,
+    store,
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
