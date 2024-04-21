@@ -202,44 +202,39 @@
         <div id="fountainG_8" class="fountainG"></div>
     </div>
     <script>
-     // Display loader when a request is sent
-     function displayLoader() {
-        document.getElementById('fountainG').style.display = 'block';
-    }
+   
+    // Function to send an asynchronous request
+        function sendRequest() {
+            // Display loader before sending the request
+            document.getElementById('fountainG').style.display = 'block';
 
-    // Hide loader when a response is received
-    function hideLoader() {
-        document.getElementById('fountainG').style.display = 'none';
-    }
-
-    // Function to send a request
-    function sendRequest() {
-        displayLoader(); // Display loader immediately
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    // Request successful, hide the loader
-                    hideLoader();
-                } else {
-                    // Request failed, hide the loader
-                    hideLoader();
-                    // Handle error
-                    console.error('Request failed:', xhr.status);
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        // Request successful, hide the loader
+                        document.getElementById('fountainG').style.display = 'none';
+                        // Process response
+                        console.log(xhr.responseText);
+                    } else {
+                        // Request failed, hide the loader
+                        document.getElementById('fountainG').style.display = 'none';
+                        // Handle error
+                    }
                 }
-            }
-        };
+            };
 
-        // Open the request
-        xhr.open('GET', 'https://api.example.com/data', true);
-        // Send the request
-        xhr.send();
-    }
+            // Open the request
+            xhr.open('GET', 'https://api.example.com/data', true);
+            // Send the request
+            xhr.send();
+        }
 
-    // Simulate sending a request after page load
-    window.addEventListener('load', function() {
-        sendRequest();
-    });
+        // Simulate sending a request after page load
+        window.addEventListener('load', function() {
+            // Simulating an asynchronous request after 3 seconds
+            setTimeout(sendRequest, 3000);
+        });
     </script>
 </body>
 </html>
