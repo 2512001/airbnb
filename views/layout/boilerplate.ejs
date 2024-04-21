@@ -17,10 +17,28 @@
     <%- include('../include/navbar.ejs')  %>
     <div class="container">
         <%- include('../include/flash.ejs')  %>
+        <%- include('../include/loader.ejs')  %>
         <%- body %>
     </div>
     <%- include('../include/footer.ejs')  %>
     <script src="/js/script.js"></script>
     <script src="/js/scrollanimation.js"></script>
+    <script>
+        // script.js
+window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+
+    // Show loader when an asynchronous task starts (e.g., AJAX request)
+    document.addEventListener('ajaxStart', () => {
+        loader.style.display = 'block';
+    });
+
+    // Hide loader when an asynchronous task completes
+    document.addEventListener('ajaxStop', () => {
+        loader.style.display = 'none';
+    });
+});
+
+    </script>
 </body>
 </html>
